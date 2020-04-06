@@ -4,9 +4,9 @@ const Sushi = (props) => {
   return (
     <div className="sushi">
       <div className="plate" 
-           onClick={(event) => {props.eatSushi(event, props.sushi.img_url)}}>
+           onClick={(event) => {props.eatSushi(event, props.sushi)}}>
         { 
-          props.eaten === true ?
+          props.eaten.includes(props.sushi) ?
             null
           :
             <img src={ props.sushi.img_url } width="100%" />
