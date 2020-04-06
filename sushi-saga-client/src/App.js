@@ -11,13 +11,20 @@ class App extends Component {
     sushis: [],
     startIndex: 0,
     eaten: [],
-    budget: 150
+    budget: 100
   }
   
   eatSushi = (sushi) => {
-    this.setState({
-      eaten: [...this.state.eaten, sushi]
-    })
+    const targetSushi = this.state.sushis.find(s => s.id === sushi.id)
+    const newMoney = this.state.budget - targetSushi.price
+
+    if (!this.state.eaten.includes(sushi.id)){
+      this.setState({
+        eaten: [...this.state.eaten, sushi.id],
+        budget: newMoney
+      })
+    }
+    console.log(newMoney)
   }
 
   componentDidMount(){

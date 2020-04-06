@@ -4,18 +4,18 @@ const Table = (props) => {
 
   const renderPlates = (array) => {
     return array.map((x, index) => {
-      return <div className="empty-plate" style={{ top: -7 * index }}/>
+      return <div key={index} className="empty-plate" style={{ top: -7 * index }}/>
     })
   }
 
-  const renderAmountSpent = () => {
-    return props.eaten.map(sushi => sushi.price).reduce((a,b)=> a+b,0) 
-  }
+  // const renderAmountSpent = () => {
+  //   return props.eaten.map(sushi => sushi.price).reduce((a,b)=> a+b,0) 
+  // }
 
   return (
     <Fragment>
       <h1 className="remaining">
-        You have: ${ props.budget - renderAmountSpent() } remaining!
+        You have: ${ props.budget } remaining!
       </h1>
       <div className="table">
         <div className="stack">

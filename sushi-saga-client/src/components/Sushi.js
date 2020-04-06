@@ -4,7 +4,7 @@ const Sushi = (props) => {
   const sushi = props.sushi
 
   const eat = () => {
-    (props.budget >= 0 && (props.budget > sushi.price)) ? props.eatSushi(sushi) : null
+    ((props.budget > sushi.price)) ? props.eatSushi(sushi) : console.log('you do not have enough money')
     
   }
 
@@ -14,8 +14,8 @@ const Sushi = (props) => {
            onClick={() => eat()}>
         { 
           /* Tell me if this sushi has been eaten! */ 
-          props.eaten.find(s => s === sushi) ?
-            console.log('This sushi has been eaten!', props.eaten)
+          props.eaten.find(s => s === sushi.id) ?
+            console.log('This sushi has been eaten!')
           :
             <img src={sushi.img_url} width="100%" />
         }
