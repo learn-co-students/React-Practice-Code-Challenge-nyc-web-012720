@@ -23,7 +23,8 @@ class SushiContainer extends Component {
   }
 
   // when "More" button is clicked, change showMore to true
-  // render the next 4 sushi
+  // if showMore = true, render next 4 sushi (i.e. now we want to show index 4-7)
+  // (0-3), (4-7), etc. 
   handleMoreClick = () => {
     this.setState({
       showMore: true
