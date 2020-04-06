@@ -9,8 +9,8 @@ class App extends Component {
 
   state = {
     sushis: [], 
-    pageCount: 0,
-    budget: null
+    pageCount: 1,
+    budget: 100
   }
 
   componentDidMount() {
@@ -21,12 +21,27 @@ class App extends Component {
     }))
   }
 
+  moreButton = () => {
+    this.setState({
+      pageCount: this.state.pageCount + 4
+    })
+  }
+
+  eatSushi = () => {
+    
+  }
 
   render() {
+    console.log(this.state)
     return (
       <div className="app">
-        <SushiContainer sushis={this.state.sushis} pageCount={this.state.pageCount} />
-        <Table />
+        <SushiContainer 
+          sushis={this.state.sushis} 
+          pageCount={this.state.pageCount} 
+          moreButton={this.moreButton} 
+          eatSushi={this.eatSushi}
+        />
+        <Table budget={this.state.budget}/>
       </div>
     );
   }

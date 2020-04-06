@@ -3,21 +3,20 @@ import MoreButton from '../components/MoreButton'
 import Sushi from '../components/Sushi'
 
 const SushiContainer = (props) => {
-  console.log(props.sushis)
   const renderSushi = () => {
-    return props.sushis.map(sushi => <Sushi sushi={sushi} />)
+    let filtered = props.sushis.filter(sushi => sushi.id < props.pageCount + 4 && sushi.id >= props.pageCount)
+    return filtered.map(sushi => <Sushi key={sushi.id} sushi={sushi}/>)
   }
+
   return (
     <Fragment>
       <div className="belt">
-        {
 
+        {console.log(renderSushi())}
+        {
           renderSushi()
-          /* 
-             Render Sushi components here!
-          */
         }
-        <MoreButton />
+        <MoreButton moreButton={props.moreButton}/>
       </div>
     </Fragment>
   )
