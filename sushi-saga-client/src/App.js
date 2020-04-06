@@ -11,7 +11,8 @@ class App extends Component {
     sushis: [],
     startIndex: 0,
     eaten: [],
-    budget: 100
+    budget: 100,
+    amount: ''
   }
   
   eatSushi = (sushi) => {
@@ -23,8 +24,10 @@ class App extends Component {
         eaten: [...this.state.eaten, sushi.id],
         budget: newMoney
       })
+    } else {
+      alert('You do not have enough money. You broke!')
     }
-    console.log(newMoney)
+   
   }
 
   componentDidMount(){
@@ -37,14 +40,35 @@ class App extends Component {
 
   increaseIndex = () => {
     let newIndex = this.state.startIndex + 4
+  
     this.setState({
-      startIndex: newIndex
+      startIndex: newIndex >= this.state.sushis.length ? 0 : newIndex
+    })
+  }
+
+  handleChange = e => {
+    this.setState({
+      amount: e.target.value
+    })
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    this.setState({
+      budget: this.state.budget + parseInt(this.state.amount),
+      amount: ''
     })
   }
 
   render() {
     return (
       <div className="app">
+        <form onSubmit={this.handleSubmit}>
+        <label>Add Money
+          <input type="text" onChange={e => this.handleChange(e)} value={this.state.amount}/>
+          <input type="submit"/>
+        </label>
+        </form>
         <SushiContainer 
           sushis={this.state.sushis} 
           eatSushi={this.eatSushi} 
@@ -52,7 +76,9 @@ class App extends Component {
           index={this.state.startIndex}
           increaseIndex={this.increaseIndex}
           budget={this.state.budget} />
-        <Table eaten={this.state.eaten} budget={this.state.budget}/>
+        <Table 
+          eaten={this.state.eaten} 
+          budget={this.state.budget}/>
       </div>
     );
   }
