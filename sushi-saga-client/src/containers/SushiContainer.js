@@ -6,8 +6,8 @@ const SushiContainer = (props) => {
   return (
     <Fragment>
       <div className="belt">
-        <SushiList api={props} />
-        <MoreButton />
+        <SushiList api={props.api} />
+        <MoreButton/>
       </div>
     </Fragment>
   )

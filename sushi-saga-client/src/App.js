@@ -10,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SushiContainer API={API}/>
+        <SushiContainer api={API}/>
         <Table />
       </div>
     );

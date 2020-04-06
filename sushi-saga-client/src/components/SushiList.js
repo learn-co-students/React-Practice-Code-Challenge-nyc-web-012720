@@ -1,30 +1,40 @@
 import React from 'react'
+import Sushi from './Sushi'
 
 class SushiList extends React.Component {
 
-    // state = {
-    //     sushi: []
-    // }
+    state = {
+        sushi: []
+    }
 
     componentDidMount() {
-        this.handleFetch(this.props.api)
+        this.handleFetch()
     }   
 
-
-    handleFetch = api => {
-        const apiUrl = `${this.props.api.API}`
-        console.log('inside handleFetch: api =>', apiUrl)
-        fetch(apiUrl)
+    handleFetch = () => {
+        fetch(this.props.api)
         .then(res => res.json())
-        .then(sushiData => console.log(sushiData))
+        .then(sushiData => this.handleSushiData(sushiData))
+    }
+
+    handleSushiData = sushiData => {
+        const sushi = sushiData
+        this.setState({sushi: sushi})
+    }
+
+    renderSushi = () => {
+        const sushis = this.state.sushi
+        return sushis.slice(0, 4).map((sushi, i) => {
+            // console.log(sushi)
+            return <Sushi key={i} props={sushi}/>
+        })
     }
 
     render() {
-        // console.log("SushiList - render: ", this.props.api);
-        
+        // console.log("SushiList - render: ", this.state);
         return (
             <div>
-  
+                {this.renderSushi()}
             </div>
         )
     }
