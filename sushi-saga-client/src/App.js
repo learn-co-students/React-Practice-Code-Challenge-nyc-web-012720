@@ -11,6 +11,7 @@ class App extends Component {
     allSushi: [],
     startIndex: 0,
     sushiBudget: 100,
+    startingBudget: 100,
     eatenSushi: []
   }
 
@@ -30,11 +31,24 @@ class App extends Component {
     this.setState({ startIndex: newIndex})
   }
 
-  addEatenSushi = (eatenSushi) => {
+  addEatenSushi = (sushiObj) => {
+    console.log(sushiObj)
+    
     let eatenArray = this.state.eatenSushi
-    let newEatenArray = eatenArray.push(eatenSushi)
-    this.setState({eatenSushi: newEatenArray})
+    console.log(eatenArray)
+
+    eatenArray.push(sushiObj)
+    console.log(eatenArray)
+    
+    this.setState({eatenSushi: eatenArray})
   }
+
+  calculateSpent = () => {
+    let totalSpend = 0
+    this.state.eatenSushi.forEach(element => {totalSpend += element.price})
+      this.setState({sushiBudget: this.state.startingBudget - totalSpend})
+    }
+
 
 
 

@@ -15,7 +15,7 @@ class Sushi extends React.Component {
   return (
     <div className="sushi">
       <div className="plate" 
-           onClick={this.handleEatenClick}>
+           onClick={()=>this.props.addEatenSushi(this.props.sushi)}>
         { 
           this.state.eaten ? 
             null
