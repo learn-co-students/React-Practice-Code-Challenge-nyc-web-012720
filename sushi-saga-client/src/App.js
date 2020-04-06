@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <SushiContainer />
+        <SushiContainer sushis={this.state.sushis} />
         <Table />
       </div>
     );
