@@ -5,12 +5,14 @@ import Sushi from '../components/Sushi';
 class SushiContainer extends Component {
   state = {
     sushiToShow: 4,
-    showMore: false
+    showMore: false, 
+    startIndex: 0, 
+    endIndex: 3
   }
 
   renderSushi = () => {
     return (
-      this.props.sushis.slice(0, this.state.sushiToShow).map(sushi =>
+      this.props.sushis.slice(this.state.startIndex, this.state.sushiToShow).map(sushi =>
         <Sushi
           key={sushi.id}
           name={sushi.name}
@@ -24,7 +26,7 @@ class SushiContainer extends Component {
 
   // when "More" button is clicked, change showMore to true
   // if showMore = true, render next 4 sushi (i.e. now we want to show index 4-7)
-  // (0-3), (4-7), etc. 
+  // (0-3), (4-7), etc. => how do we change the start and end index of what is shown?
   handleMoreClick = () => {
     this.setState({
       showMore: true
