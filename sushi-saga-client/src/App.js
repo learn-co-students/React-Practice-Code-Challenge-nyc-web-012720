@@ -9,7 +9,9 @@ class App extends Component {
 
   state = {
     allSushi: [],
-    startIndex: 0
+    startIndex: 0,
+    sushiBudget: 100,
+    eatenSushi: []
   }
 
   componentDidMount() {
@@ -28,12 +30,19 @@ class App extends Component {
     this.setState({ startIndex: newIndex})
   }
 
+  addEatenSushi = (eatenSushi) => {
+    let eatenArray = this.state.eatenSushi
+    let newEatenArray = eatenArray.push(eatenSushi)
+    this.setState({eatenSushi: newEatenArray})
+  }
+
+
 
   render() {
     return (
       <div className="app">
-        <SushiContainer provideFourSushi={this.provideFourSushi} advanceSushi={this.advanceSushi}/>
-        <Table />
+        <SushiContainer provideFourSushi={this.provideFourSushi} advanceSushi={this.advanceSushi} addEatenSushi={this.addEatenSushi}/>
+        <Table sushiBudget={this.state.sushiBudget}/>
       </div>
     );
   }
