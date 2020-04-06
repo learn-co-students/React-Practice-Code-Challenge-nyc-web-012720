@@ -5,7 +5,7 @@ import Sushi from '../components/Sushi';
 class SushiContainer extends Component {
   renderSushi = () => {
     return (
-      this.props.sushis.map(sushi =>
+      this.props.sushis.slice(0, 4).map(sushi =>
         <Sushi
           key={sushi.id}
           name={sushi.name}
@@ -21,7 +21,7 @@ class SushiContainer extends Component {
     return (
       <div>
         <div className="belt">
-        /* Render Sushi components here! */
+        {/* Render Sushi components here! */ }
           {this.renderSushi()}
           <MoreButton />
         </div>
@@ -30,4 +30,4 @@ class SushiContainer extends Component {
   }
 }
 
-export default SushiContainer
+export default SushiContainer; 
