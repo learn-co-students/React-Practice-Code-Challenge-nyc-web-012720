@@ -8,8 +8,7 @@ const API = "http://localhost:3000/sushis/"
 class App extends Component {
 
   state = {
-    sushis: [],
-    eatenSushis: []
+    sushis: []
   }
 
   componentDidMount(){
@@ -18,11 +17,23 @@ class App extends Component {
     .then(sushis => this.setState({sushis: sushis.slice(0,4)}))
   }
 
+  eatSushi = (sushiId) => {
+    let sushiCopy = [...this.state.sushis]
+    let selectedSushi = sushiCopy.find(sushi => sushi.id === sushiId)
+    selectedSushi.eaten = true
+    this.setState({
+      sushis: sushiCopy
+    })
+  }
+
   render() {
+    let uneatenSushis = this.state.sushis.filter(sushi => !sushi.eaten)
+    let eatenSushis = this.state.sushis.filter(sushi => sushi.eaten)
     return (
       <div className="app">
-        <SushiContainer sushis={this.state.sushis}/>
-        <Table />
+        <button onClick={() => console.log(this.state)}>See State</button>
+        <SushiContainer sushis={this.state.uneatenSushis} eatSushi={this.eatSushi}/>
+        <Table sushis={eatenSushis}/>
       </div>
     );
   }
