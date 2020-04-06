@@ -27,12 +27,15 @@ class App extends Component {
   }
 
   render() {
-    let uneatenSushis = this.state.sushis.filter(sushi => !sushi.eaten)
-    let eatenSushis = this.state.sushis.filter(sushi => sushi.eaten)
-    return (
+    let sushiCopy = [...this.state.sushis]
+    let uneatenSushis
+    uneatenSushis = sushiCopy.filter(sushi => !sushi.eaten)
+    let eatenSushis = sushiCopy.filter(sushi => sushi.eaten)
+    debugger
+        return (
       <div className="app">
         <button onClick={() => console.log(this.state)}>See State</button>
-        <SushiContainer sushis={this.state.uneatenSushis} eatSushi={this.eatSushi}/>
+        <SushiContainer sushis={this.state.sushis} eatSushi={this.eatSushi}/>
         <Table sushis={eatenSushis}/>
       </div>
     );
