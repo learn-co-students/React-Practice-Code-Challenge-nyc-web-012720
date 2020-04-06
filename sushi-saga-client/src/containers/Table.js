@@ -15,7 +15,7 @@ const Table = (props) => {
   return (
     <Fragment>
       <h1 className="remaining">
-        You have spent ${ renderAmountSpent() } !
+        You have: ${ props.budget - renderAmountSpent() } remaining!
       </h1>
       <div className="table">
         <div className="stack">

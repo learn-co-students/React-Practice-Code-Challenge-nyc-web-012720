@@ -9,7 +9,7 @@ const SushiContainer = (props) => {
 
     return props.sushis
       .slice(props.index, props.index + 4)
-      .map(sushi => <Sushi key={sushi.id} sushi={sushi} eatSushi={props.eatSushi} eaten={props.eaten}/>)
+      .map(sushi => <Sushi key={sushi.id} sushi={sushi} eatSushi={props.eatSushi} eaten={props.eaten} budget={props.budget}/>)
 
 
   }
