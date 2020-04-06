@@ -8,6 +8,12 @@ const Table = (props) => {
     })
   }
 
+  const addPieces = () => {
+    let array = []
+    array.push(props.pieces)
+    return array
+  }
+
   return (
     <Fragment>
       <h1 className="remaining">
@@ -21,7 +27,7 @@ const Table = (props) => {
                and renders an empty plate
                for every element in the array
             */
-            renderPlates([])
+            renderPlates(addPieces())
           }
         </div>
       </div>

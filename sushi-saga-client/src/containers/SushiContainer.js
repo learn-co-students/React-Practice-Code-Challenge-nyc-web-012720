@@ -5,7 +5,7 @@ import Sushi from '../components/Sushi'
 const SushiContainer = (props) => {
   const renderSushi = () => {
     let filtered = props.sushis.filter(sushi => sushi.id < props.pageCount + 4 && sushi.id >= props.pageCount)
-    return filtered.map(sushi => <Sushi key={sushi.id} sushi={sushi}/>)
+    return filtered.map(sushi => <Sushi piecesEaten={props.piecesEaten} key={sushi.id} sushi={sushi}/>)
   }
 
   return (
