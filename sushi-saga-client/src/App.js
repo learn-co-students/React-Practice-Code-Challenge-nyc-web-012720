@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SushiContainer from './containers/SushiContainer';
 import Table from './containers/Table';
+import SushiWallet from './containers/SushiWallet';
 
 // Endpoint!
 const API = "http://localhost:3000/sushis"
@@ -47,7 +48,6 @@ class App extends Component {
   }
 
   getCashStacks = (value) => {
-    console.log(value)
     this.setState(prevState => {
       const money = prevState.money + Number(value);
       return {money}
@@ -58,7 +58,8 @@ class App extends Component {
     return (
       <div className="app">
         <SushiContainer sushis={this.state.displaySushis} moreSushi={this.whichSushis} eatSushi={this.eatSushi} eaten={this.state.eaten}/>
-        <Table plates={this.state.eaten} bankroll={this.state.money} getMonies={this.getCashStacks}/>
+        <Table plates={this.state.eaten} bankroll={this.state.money}/>
+        <SushiWallet getMonies={this.getCashStacks}/>
       </div>
     );
   }

@@ -9,20 +9,11 @@ const Table = (props) => {
     })
   }
 
-  const getMonies = (event) => {
-    event.preventDefault();
-    console.log(event.target.value)
-    props.getMonies(event.target.value)
-  }
-
   return (
     <Fragment>
       <h1 className="remaining">
         You have: ${props.bankroll} remaining!
       </h1>
-      <form onSubmit={getMonies}>
-        <input type="number" name="moMoney"/>
-      </form>
       <div className="table">
         <div className="stack">
           {
