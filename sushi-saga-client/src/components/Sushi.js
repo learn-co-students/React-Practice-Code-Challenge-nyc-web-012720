@@ -10,7 +10,7 @@ const Sushi = (props) => {
           false ?
             null
           :
-            <img src={props.sushi.img_url } alt="sushi" width="100%" />
+            <img src={props.sushi.img_url} alt="sushi" width="100%" />
         }
       </div>
       <h4 className="sushi-details">

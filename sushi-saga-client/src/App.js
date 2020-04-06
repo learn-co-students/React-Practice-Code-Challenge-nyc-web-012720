@@ -23,11 +23,16 @@ class App extends Component {
     return sushiToRender.slice(this.state.startIndex, this.state.startIndex + 4)
   }
 
+  advanceSushi = () => {
+    let newIndex = this.state.startIndex + 4
+    this.setState({ startIndex: newIndex})
+  }
+
 
   render() {
     return (
       <div className="app">
-        <SushiContainer provideFourSushi={this.provideFourSushi} startIndex={this.state.startIndex}/>
+        <SushiContainer provideFourSushi={this.provideFourSushi} advanceSushi={this.advanceSushi}/>
         <Table />
       </div>
     );
