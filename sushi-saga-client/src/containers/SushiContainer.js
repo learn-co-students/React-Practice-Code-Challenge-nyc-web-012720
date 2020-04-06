@@ -7,7 +7,6 @@ class SushiContainer extends Component {
     sushiToShow: 4,
     showMore: false, 
     startIndex: 0, 
-    endIndex: 3
   }
 
   renderSushi = () => {
@@ -29,7 +28,8 @@ class SushiContainer extends Component {
   // (0-3), (4-7), etc. => how do we change the start and end index of what is shown?
   handleMoreClick = () => {
     this.setState({
-      showMore: true
+      showMore: true, 
+      startIndex: (this.startIndex + 4 )
     })
   }
 
