@@ -5,7 +5,7 @@ const Table = (props) => {
   const renderPlates = (array) => {
     if (array) {
       return array.map((x, index) => {
-        return <div className="empty-plate" style={{ top: -7 * index }}/>
+        return <div key={x.id} className="empty-plate" style={{ top: -7 * index }}/>
       })
     } else {
       return null
@@ -20,7 +20,7 @@ const Table = (props) => {
       <div className="table">
         <div className="stack">
           {
-            renderPlates(props.sushis)
+            renderPlates(props.sushis.filter(sushi => sushi.eaten))
           }
         </div>
       </div>
