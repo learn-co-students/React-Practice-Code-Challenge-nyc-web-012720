@@ -8,10 +8,14 @@ const Table = (props) => {
     })
   }
 
+  const renderAmountSpent = () => {
+    return props.eaten.map(sushi => sushi.price).reduce((a,b)=> a+b,0) 
+  }
+
   return (
     <Fragment>
       <h1 className="remaining">
-        You have: ${ /* Give me how much money I have left */ } remaining!
+        You have spent ${ renderAmountSpent() } !
       </h1>
       <div className="table">
         <div className="stack">
@@ -21,7 +25,7 @@ const Table = (props) => {
                and renders an empty plate
                for every element in the array
             */
-            renderPlates([])
+            renderPlates(props.eaten)
           }
         </div>
       </div>
