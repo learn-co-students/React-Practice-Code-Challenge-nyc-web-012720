@@ -4,10 +4,9 @@ const Sushi = (props) => {
   return (
     <div className="sushi">
       <div className="plate" 
-           onClick={/* Give me a callback! */ null}>
+           onClick={(event) => {props.eatSushi(event, props.sushi.img_url)}}>
         { 
-          /* Tell me if this sushi has been eaten! */ 
-          false ?
+          props.eaten === true ?
             null
           :
             <img src={ props.sushi.img_url } width="100%" />

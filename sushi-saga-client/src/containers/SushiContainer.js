@@ -4,21 +4,32 @@ import Sushi from '../components/Sushi'
 
 class SushiContainer extends React.Component {
 
-  // componentDidMount = () => {
-  //   fetch(` http://localhost:3000/sushis?_limit=4`)
-  //   .then(resp => resp.json())
-  //   .then(sushi => this.renderSushi(sushi))
-  // }
+  state = {
+    eaten: false,
+    emptyPlates: []
+  }
 
   renderSushi(sushi) {
     return sushi.map( s => {
       return <Sushi 
                 key={s.id}
                 sushi={s}
+                eatSushi={this.eatSushi}
+                eaten={this.state.eaten}
               />
     })
   }
     
+  eatSushi = (event, id) => {
+  //   console.log(id)
+  //   console.log(event.target.src)
+  //  event.target === id &&
+  event.target.src &&
+    this.setState({
+      eaten: true
+    })
+   }
+  
 
   render() {
     return (
