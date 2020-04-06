@@ -8,7 +8,8 @@ const API = "http://localhost:3000/sushis"
 class App extends Component {
 
   state = {
-    allSushi: []
+    allSushi: [],
+    startIndex: 0
   }
 
   componentDidMount() {
@@ -17,10 +18,16 @@ class App extends Component {
     .then(data => this.setState({ allSushi: data} ))
   }
 
+  provideFourSushi = () => {
+    let sushiToRender = this.state.allSushi
+    return sushiToRender.slice(this.state.startIndex, this.state.startIndex + 4)
+  }
+
+
   render() {
     return (
       <div className="app">
-        <SushiContainer allSushi={this.state.allSushi}/>
+        <SushiContainer provideFourSushi={this.provideFourSushi} startIndex={this.state.startIndex}/>
         <Table />
       </div>
     );
@@ -28,3 +35,5 @@ class App extends Component {
 }
 
 export default App;
+
+// allSushi={this.state.allSushi} 

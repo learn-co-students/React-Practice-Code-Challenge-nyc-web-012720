@@ -7,7 +7,7 @@ const SushiContainer = (props) => {
     <Fragment>
       <div className="belt">
         {
-          props.allSushi.map(sushi => <Sushi sushi={sushi}/>)
+          props.provideFourSushi.map(sushi => <Sushi sushi={sushi}/>)
         }
         <MoreButton />
       </div>
