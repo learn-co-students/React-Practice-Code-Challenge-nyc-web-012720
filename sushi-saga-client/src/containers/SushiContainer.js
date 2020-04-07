@@ -1,19 +1,47 @@
-import React, { Fragment } from 'react'
-import MoreButton from '../components/MoreButton'
+import React, { Component } from "react";
+import MoreButton from "../components/MoreButton";
+import Sushi from "../components/Sushi";
 
-const SushiContainer = (props) => {
-  return (
-    <Fragment>
-      <div className="belt">
-        {
-          /* 
-             Render Sushi components here!
-          */
-        }
-        <MoreButton />
+class SushiContainer extends Component {
+  state = {
+    startIndex: 0,
+  };
+
+  renderSushis = () => {
+    let sushisToRender = this.props.sushis;
+    return sushisToRender
+      .slice(this.state.startIndex, this.state.startIndex + 4)
+      .map((sushi) => {
+        return (
+          <Sushi
+            sushi={sushi}
+            key={sushi.id}
+            handleEatenSushis={this.props.handleEatenSushis}
+          />
+        );
+      });
+  };
+
+  handleMoreButton = () => {
+    let newIndex = this.state.startIndex + 4;
+    if (newIndex >= this.props.sushis.length) {
+      newIndex = 0;
+    }
+    this.setState({ startIndex: newIndex });
+  };
+  // this.setState({ startIndex: newIndex >= this.props.sushis.length ? 0 : newIndex  })
+
+  render() {
+    console.log(this.state.startIndex);
+    return (
+      <div>
+        <div className="belt">
+          {this.renderSushis()}
+          <MoreButton handleMoreButton={this.handleMoreButton} />
+        </div>
       </div>
-    </Fragment>
-  )
+    );
+  }
 }
 
-export default SushiContainer
+export default SushiContainer;
