@@ -1,23 +1,20 @@
-import React, { Component } from 'react'; 
+import React, { Fragment } from 'react'
 import MoreButton from '../components/MoreButton'; 
 import Sushi from '../components/Sushi'; 
 
-class SushiContainer extends Component {
+class SushiContainer extends React.Component {
   state = {
-    sushiToShow: 4,
-    showMore: false, 
-    startIndex: 0, 
+    startIndex: 0
   }
 
   renderSushi = () => {
     return (
-      this.props.sushis.slice(this.state.startIndex, this.state.sushiToShow).map(sushi =>
-        <Sushi
+      this.props.sushis.slice(this.state.startIndex, this.state.startIndex + 4).map(sushi =>
+        <Sushi 
           key={sushi.id}
-          name={sushi.name}
-          image={sushi.img_url}
-          price={sushi.price}
-          createdAt={sushi.created_at}
+          {...sushi}
+          eaten={this.props.sushi}
+          handleEat={this.props.handleEat}
         />
       )
     )
@@ -27,21 +24,24 @@ class SushiContainer extends Component {
   // if showMore = true, render next 4 sushi (i.e. now we want to show index 4-7)
   // (0-3), (4-7), etc. => how do we change the start and end index of what is shown?
   handleMoreClick = () => {
+    let newIndex = this.state.startIndex + 4
+    if (newIndex >= this.props.sushis.length) {
+      newIndex = 0
+    }
     this.setState({
-      showMore: true, 
-      startIndex: (this.startIndex + 4 )
+      startIndex: newIndex 
     })
   }
 
   render() {
     return (
-      <div>
+      <Fragment>
         <div className="belt">
         {/* Render Sushi components here! */ }
           {this.renderSushi()}
           <MoreButton handleMoreClick={this.handleMoreClick} />
         </div>
-      </div>
+        </Fragment>
     )
   }
 }
