@@ -4,18 +4,15 @@ import Sushi from '../components/Sushi'
 
 const SushiContainer = (props) => {
   const renderSushi = () => {
-    let filtered = props.sushis.filter(sushi => sushi.id < props.pageCount + 4 && sushi.id >= props.pageCount)
-    return filtered.map(sushi => <Sushi piecesEaten={props.piecesEaten} key={sushi.id} sushi={sushi}/>)
+    return props.sushis
+    .filter(sushi => sushi.id < props.pageCount + 4 && sushi.id >= props.pageCount)
+    .map(sushi => <Sushi eatenArray={props.eatenArray} eaten={props.eaten} key={sushi.id} sushi={sushi}/>)
   }
 
   return (
     <Fragment>
       <div className="belt">
-
-        {console.log(renderSushi())}
-        {
-          renderSushi()
-        }
+        {renderSushi()}
         <MoreButton moreButton={props.moreButton}/>
       </div>
     </Fragment>
