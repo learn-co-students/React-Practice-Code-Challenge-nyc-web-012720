@@ -1,20 +1,16 @@
 import React, { Component } from "react";
 
 class Sushi extends Component {
-  state = {
-    eaten: false,
-  };
-
   handleEating = () => {
-    this.setState({ eaten: true });
+    this.props.handleEatenSushis(this.props.sushi.id);
   };
 
   render() {
     return (
       <div className="sushi">
         <div className="plate" onClick={this.handleEating}>
-          {this.state.eaten ? null : (
-            <img src={this.props.sushi.img_url} width="100%" />
+          {this.props.sushi.isEaten ? null : (
+            <img src={this.props.sushi.img_url} alt="sushi" width="100%" />
           )}
         </div>
         <h4 className="sushi-details">
@@ -25,15 +21,4 @@ class Sushi extends Component {
   }
 }
 
-// const Sushi = (props) => {
-//   return (
-//   );
-// };
-
 export default Sushi;
-
-// {/* Tell me if this sushi has been eaten! */
-
-// false ? null : (
-//   // <img src={/* Give me an image source! */} width="100%" />
-// )}

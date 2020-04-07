@@ -5,7 +5,6 @@ import Sushi from "../components/Sushi";
 class SushiContainer extends Component {
   state = {
     startIndex: 0,
-    eaten: false,
   };
 
   renderSushis = () => {
@@ -13,15 +12,27 @@ class SushiContainer extends Component {
     return sushisToRender
       .slice(this.state.startIndex, this.state.startIndex + 4)
       .map((sushi) => {
-        return <Sushi sushi={sushi} key={sushi.id} eaten={this.state.eaten} />;
+        return (
+          <Sushi
+            sushi={sushi}
+            key={sushi.id}
+            handleEatenSushis={this.props.handleEatenSushis}
+          />
+        );
       });
   };
 
   handleMoreButton = () => {
-    this.setState({ startIndex: this.state.startIndex + 4 });
+    let newIndex = this.state.startIndex + 4;
+    if (newIndex >= this.props.sushis.length) {
+      newIndex = 0;
+    }
+    this.setState({ startIndex: newIndex });
   };
+  // this.setState({ startIndex: newIndex >= this.props.sushis.length ? 0 : newIndex  })
 
   render() {
+    console.log(this.state.startIndex);
     return (
       <div>
         <div className="belt">
@@ -34,18 +45,3 @@ class SushiContainer extends Component {
 }
 
 export default SushiContainer;
-
-// const SushiContainer = (props) => {
-//   return (
-//     <Fragment>
-//       <div className="belt">
-//         {
-//           /*
-//              Render Sushi components here!
-//           */
-//         }
-//         <MoreButton />
-//       </div>
-//     </Fragment>
-//   )
-// }
