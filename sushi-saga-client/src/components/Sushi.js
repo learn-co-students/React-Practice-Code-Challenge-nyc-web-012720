@@ -4,9 +4,9 @@ const Sushi = (props) => {
   return (
     <div className="sushi">
       <div className="plate" 
-           onClick={(event) => {props.eatSushi(event, props.sushi)}}>
+           onClick={() => {props.handleEat(props.sushi.id)}}>
         { 
-          props.eaten.includes(props.sushi) ?
+          props.eaten.includes(props.sushi.id) ?
             null
           :
             <img src={ props.sushi.img_url } width="100%" />
@@ -18,5 +18,4 @@ const Sushi = (props) => {
     </div>
   )
 }
-
 export default Sushi
